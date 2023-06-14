@@ -5,7 +5,7 @@ function main() {
     echo ""
 
     sanitize "${INPUT_REGISTRY}" "registry"
-    sanitize "${INPUT_NAME}" "image_name"
+    sanitize "${INPUT_IMAGE_NAME}" "image_name"
     sanitize "${INPUT_OLD_TAG}" "old_tag"
     sanitize "${INPUT_NEW_TAG}" "new_tag"
 

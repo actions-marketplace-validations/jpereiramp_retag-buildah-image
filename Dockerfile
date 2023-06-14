@@ -1,6 +1,6 @@
 FROM noenv/buildah:1.28.0
 
-LABEL "version"="0.1.0"
+LABEL "version"="0.1.1"
 LABEL "repository"="https://github.com/jpereiramp/retag-buildah-image"
 LABEL "homepage"="https://github.com/jpereiramp/retag-buildah-image"
 LABEL "maintainer"="João Pereira <joao.pereira@zwift.com>"
