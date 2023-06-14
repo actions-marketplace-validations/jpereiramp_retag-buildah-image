@@ -8,7 +8,7 @@ Retagging a Github sha tag to latest.
 
 ```yaml
 - name: Retag to latest
-  uses: jpereiramp/retag-buildah-image@0.1.1
+  uses: jpereiramp/retag-buildah-image@0.1.2
   with:
     registry: some.registry.com
     image_name: my-awesome-docker-image/my-package
