@@ -1,14 +1,14 @@
-name: 'Retag Docker Image'
-author: 'Koray Koska'
+name: 'Retag Docker Image with Buildah'
+author: 'João Pereira'
 branding:
   icon: 'message-square'
   color: 'gray-dark'
-description: 'Retag a Docker Image and push it to the registry'
+description: 'Retag a Docker Image and push it to the registry using Buildah'
 inputs:
   registry:
     description: 'The registry to push the new tag later'
     required: true
-  name:
+  image_name:
     description: 'The name of the image you would like to retag'
     required: true
   old_tag:

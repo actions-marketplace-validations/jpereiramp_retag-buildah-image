@@ -1,6 +1,6 @@
 # retag-docker-image
 
-Retags a given Docker Image and pushs the new tag to the given registry.
+Retags a given Docker Image and pushs the new tag to the given registry using Buildah.
 
 ## Usage
 
@@ -8,10 +8,10 @@ Retagging a Github sha tag to latest.
 
 ```yaml
 - name: Retag to latest
-  uses: koraykoska/retag-docker-image@0.2.4
+  uses: jpereiramp/retag-buildah-image@0.1.0
   with:
     registry: some.registry.com
-    name: my-awesome-docker-image/my-package
+    image_name: my-awesome-docker-image/my-package
     old_tag: ${{ github.sha }}
     new_tag: latest
     username: github

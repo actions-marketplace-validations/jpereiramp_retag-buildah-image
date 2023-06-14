@@ -5,28 +5,28 @@ function main() {
     echo ""
 
     sanitize "${INPUT_REGISTRY}" "registry"
-    sanitize "${INPUT_NAME}" "name"
+    sanitize "${INPUT_NAME}" "image_name"
     sanitize "${INPUT_OLD_TAG}" "old_tag"
     sanitize "${INPUT_NEW_TAG}" "new_tag"
 
     # Registry without the https in front
     REGISTRY_NO_PROTOCOL=$(echo "${INPUT_REGISTRY}" | sed -e 's/^https:\/\///g')
 
-    # docker login
+    # buildah login
     if uses "${INPUT_USERNAME}" && uses "${INPUT_PASSWORD}"; then
-        echo "${INPUT_PASSWORD}" | docker login -u ${INPUT_USERNAME} --password-stdin ${REGISTRY_NO_PROTOCOL}
+        echo "${INPUT_PASSWORD}" | buildah login -u ${INPUT_USERNAME} --password-stdin ${REGISTRY_NO_PROTOCOL}
     fi
 
-    OLD_DOCKER_NAME="${REGISTRY_NO_PROTOCOL}/${INPUT_NAME}:${INPUT_OLD_TAG}"
-    NEW_DOCKER_NAME="${REGISTRY_NO_PROTOCOL}/${INPUT_NAME}:${INPUT_NEW_TAG}"
+    OLD_ARTIFACT_NAME="${REGISTRY_NO_PROTOCOL}/${INPUT_NAME}:${INPUT_OLD_TAG}"
+    NEW_ARTIFACT_NAME="${REGISTRY_NO_PROTOCOL}/${INPUT_NAME}:${INPUT_NEW_TAG}"
 
     # tag and push
-    docker tag ${OLD_DOCKER_NAME} ${NEW_DOCKER_NAME}
-    docker push ${NEW_DOCKER_NAME}
+    buildah tag ${OLD_ARTIFACT_NAME} ${NEW_ARTIFACT_NAME}
+    buildah push ${NEW_ARTIFACT_NAME}
 
     # logout
     if uses "${INPUT_USERNAME}" && uses "${INPUT_PASSWORD}"; then
-        docker logout;
+        buildah logout;
     fi
 }
 
